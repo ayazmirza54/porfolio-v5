@@ -19,6 +19,7 @@ interface ShaderProps {
             type: string;
         };
     };
+    maxFps?: number;
 }
 
 interface SignInPageProps {
@@ -217,11 +218,9 @@ const DotMatrix: React.FC<DotMatrixProps> = ({
 const ShaderMaterial = ({
     source,
     uniforms,
-    maxFps = 60,
 }: {
     source: string;
     hovered?: boolean;
-    maxFps?: number;
     uniforms: Uniforms;
 }) => {
     const { size } = useThree();
@@ -318,10 +317,10 @@ const ShaderMaterial = ({
     );
 };
 
-const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
+const Shader: React.FC<ShaderProps> = ({ source, uniforms }) => {
     return (
         <Canvas className="absolute inset-0 h-full w-full">
-            <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
+            <ShaderMaterial source={source} uniforms={uniforms} />
         </Canvas>
     );
 };
