@@ -15,7 +15,7 @@ const CVDownload = () => {
     return (
         <GradientButton variant="download" onClick={handleDownload}>
             <Download className="h-5 w-5 mr-2" />
-            Download Resume
+           <span className="font-google"> Download Resume</span>
         </GradientButton>
     );
 };

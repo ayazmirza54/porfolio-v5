@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Jersey+10&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 @import "tailwindcss";
 
 
@@ -239,3 +242,9 @@
 :root {
   color-scheme: dark;
 }
+.font-jersey {
+  font-family: 'Jersey 10', sans-serif;
+} 
+.font-google {
+  font-family: "Google Sans Code", monospace;
+} 

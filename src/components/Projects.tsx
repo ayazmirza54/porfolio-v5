@@ -3,6 +3,16 @@ import { FaServer } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
+// Import project images
+import p1 from "@/assets/p1.png";
+import p2 from "@/assets/p2.png";
+import p3 from "@/assets/p3.png";
+import p4 from "@/assets/p4.png";
+import p5 from "@/assets/p5.png";
+import p6 from "@/assets/p6.png";
+import p7 from "@/assets/p7.gif";
+import p8 from "@/assets/p8.png";
+
 const Projects = () => {
     return (
         <section id="projects" className="min-h-screen px-4 py-20">
@@ -36,7 +46,7 @@ const Projects = () => {
                             <a href="#">
                                 <img
                                     className="rounded-t-lg w-full"
-                                    src="https://opengraph.b-cdn.net/production/images/d2191f8c-f07c-494b-854b-281f67c52b6e.png?token=QK8jkkzV7j7xvYLQdz4UvUYMfRqlyDzGNER8TCVsP8c&height=1013&width=1200&expires=33271056025"
+                                    src={p1}
                                     alt=""
                                 />
                             </a>
@@ -83,7 +93,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/project_2.png" alt="" />
+                                <img className="rounded-t-lg w-full" src={p2} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -128,7 +138,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/project_1.png" alt="" />
+                                <img className="rounded-t-lg w-full" src={p3} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -173,7 +183,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/project_4.png" alt="" />
+                                <img className="rounded-t-lg w-full" src={p4} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -234,7 +244,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/unixbot.png" alt="" />
+                                <img className="rounded-t-lg w-full" src={p5} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -279,7 +289,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/query-smith.png" alt="" />
+                                <img className="rounded-t-lg w-full" src={p6} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -324,7 +334,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/ec2-control.gif" alt="" />
+                                <img className="rounded-t-lg w-full" src={p7} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -361,7 +371,7 @@ const Projects = () => {
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src="https://ayazmirza54.in/keep-alive.png" alt="" />
+                                <img className="rounded-t-lg w-full" src={p8} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">

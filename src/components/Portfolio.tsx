@@ -9,6 +9,9 @@ import Blogs from "@/components/Blogs";
 import SocialLinks from "@/components/SocialLinks";
 import CVDownload from "@/components/CVDownload";
 import { FaDev } from "react-icons/fa";
+import GradientText from "@/components/GradientText";
+
+
 // ============ Navbar Component ============
 const AnimatedNavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
     return (
@@ -53,7 +56,7 @@ function Navbar() {
                        w-[calc(100%-2rem)] sm:w-auto transition-[border-radius] duration-0 ease-in-out`}>
             <div className="flex items-center justify-between w-full gap-x-6 sm:gap-x-8">
                 <div className="flex items-center">
-                    <span className="text-white font-bold text-lg">AM</span>
+                    <span className="text-white font-jersey text-4xl">AM</span>
                 </div>
                 <nav className="hidden sm:flex items-center space-x-4 sm:space-x-6 text-sm">
                     {navLinksData.map((link) => (
@@ -93,7 +96,7 @@ function Navbar() {
 // ============ Hero Section ============
 function HeroSection() {
     return (
-        <section id="hero" className="min-h-screen mt-10 flex flex-col justify-center items-center text-center px-4 relative">
+        <section id="hero" className="min-h-screen mt-20 flex flex-col justify-center items-center text-center px-4 relative">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -110,11 +113,21 @@ function HeroSection() {
                 </motion.div>
 
                 <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                    Hi, I'm <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">Ayaz Mirza</span>
+                    <h3 className="text-[50px]">
+                        Hi, I'm</h3>
+                    <GradientText
+                        colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                        animationSpeed={3}
+                        showBorder={false}
+                        className="custom-class"
+                    >
+                        <span className="font-jersey text-[80px]">Ayaz Mirza</span>
+                    </GradientText>
                 </h1>
 
-                <p className="text-xl md:text-2xl text-white/60 font-light max-w-2xl mx-auto">
-                    A passionate developer crafting beautiful digital experiences with modern technologies
+                <p className="text-lg md:text-lg text-white/60 font-light max-w-2xl mx-auto">
+                    Senior Consultant at Wipro with 6+ years of experience in ETL development using Ab Initio ETL tool.
+                    Experienced in working with cloud providers like AWS, Azure and GCP.
                 </p>
 
                 <motion.div
@@ -127,8 +140,8 @@ function HeroSection() {
                         <a href="#projects">View Projects</a>
                     </GradientButton>
                     <CVDownload />
-                    <GradientButton variant="variant">
-                        <a href="#contact">Get in Touch</a>
+                    <GradientButton variant="variant" asChild>
+                        <a href="mailto:ayazmirza54@gmail.com?subject=Hello%20Ayaz!">Get in Touch</a>
                     </GradientButton>
                 </motion.div>
 
@@ -151,7 +164,7 @@ function HeroSection() {
                         href="https://github.com/ayazmirza54"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full border-2 border-gray-600 bg-black flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all hover:scale-110"
+                        className="w-12 h-12 rounded-full border-2 border-gray-600 bg-black flex items-center justify-center text-white/70 hover:text-green-400 hover:border-green-400 transition-all hover:scale-110"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
                     </a>
@@ -167,7 +180,7 @@ function HeroSection() {
                         href="https://dev.to/ayazmirza54"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full border-2 border-gray-600 bg-black flex items-center justify-center text-white/70 hover:text-green-400 hover:border-green-400 transition-all hover:scale-110"
+                        className="w-12 h-12 rounded-full border-2 border-gray-600 bg-black flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all hover:scale-110"
                     >
                         <FaDev size={20} />         </a>
                 </motion.div>
@@ -178,7 +191,7 @@ function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                className="absolute bottom-20 left-1/2 -translate-x-1/2"
             >
                 <motion.div
                     animate={{ y: [0, 10, 0] }}
@@ -206,16 +219,17 @@ function AboutSection() {
                 <h2 className="text-4xl md:text-5xl font-bold text-white">About Me</h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto rounded-full" />
                 <p className="text-lg text-white/70 leading-relaxed">
-                    I'm a passionate developer with a love for creating intuitive and visually stunning web applications.
-                    With expertise in modern frameworks and a keen eye for design, I transform ideas into digital reality.
-                    When I'm not coding, you'll find me exploring new technologies and contributing to open-source projects.
+                    Data Engineer with 6+ years of experience in designing, building, and optimizing high-volume ETL
+                    pipelines using Ab Initio and SQL. Skilled in automation with Shell scripting and Ansible, data
+                    visualization with Power BI, and leveraging Google Cloud Platform (GCP) & AWS for scalable cloud based solutions. Strong background in troubleshooting performance issues, ensuring data quality, and
+                    delivering efficient, reliable data workflows.
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
                     {[
-                        { label: "Years Experience", value: "5+" },
-                        { label: "Projects Completed", value: "20+" },
+                        { label: "Years Experience", value: "6+" },
+                        { label: "Projects Completed", value: "13+" },
                         { label: "Technologies", value: "15+" },
-                        { label: "Happy Clients", value: "10+" },
+                        { label: "Happy Clients", value: "2+" },
                     ].map((stat, i) => (
                         <motion.div
                             key={stat.label}
@@ -379,7 +393,7 @@ export function Portfolio() {
 
                 {/* Footer */}
                 <footer className="py-8 text-center text-white/40 text-sm border-t border-white/10">
-                    <p>© 2024 Ayaz Mirza. Built with React & ❤️</p>
+                    <p>© 2026 Ayaz Mirza. Built with ✨ & ❤️</p>
                 </footer>
             </div>
         </div>
