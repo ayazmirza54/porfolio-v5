@@ -19,7 +19,6 @@ interface ShaderProps {
             type: string;
         };
     };
-    maxFps?: number;
 }
 
 interface SignInPageProps {
