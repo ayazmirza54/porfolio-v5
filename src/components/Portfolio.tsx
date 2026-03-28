@@ -10,7 +10,15 @@ import SocialLinks from "@/components/SocialLinks";
 import CVDownload from "@/components/CVDownload";
 import { FaDev } from "react-icons/fa";
 import GradientText from "@/components/GradientText";
-
+import CertBadge3D from "@/components/CertBadge3D";
+import awsIcon from "@/assets/aws.svg";
+import azureIcon from "@/assets/azure.svg";
+import gcpIcon from "@/assets/gcp.svg";
+import ec2Icon from "@/assets/ec2.svg";
+import lambdaIcon from "@/assets/lambda.svg";
+import cloudwatchIcon from "@/assets/cloudwatch.svg";
+import redshiftIcon from "@/assets/redshift.svg";
+import shellIcon from "@/assets/shell.png";
 
 // ============ Navbar Component ============
 const AnimatedNavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
@@ -255,13 +263,13 @@ function AboutSection() {
 
 // ============ Tech Stack Section ============
 function TechStackSection() {
-    const technologies = {
+    const technologies: Record<string, { name: string; icon: string; svgIcon?: string }[]> = {
         "Languages": [
             { name: "JavaScript", icon: "⚡" },
             { name: "HTML5", icon: "🌐" },
             { name: "CSS3", icon: "🎨" },
             { name: "Markdown", icon: "📝" },
-            { name: "Shell Script", icon: "💻" },
+            { name: "Shell Script", icon: "", svgIcon: shellIcon },
             { name: "C++", icon: "⚙️" },
             { name: "C", icon: "🔧" },
         ],
@@ -290,7 +298,25 @@ function TechStackSection() {
             { name: "Claude AI", icon: "🤖" },
             { name: "ChatGPT", icon: "🤖" },
         ],
+        "Cloud Technologies": [
+            { name: "AWS", icon: "", svgIcon: awsIcon },
+            { name: "Azure", icon: "", svgIcon: azureIcon },
+            { name: "GCP", icon: "", svgIcon: gcpIcon },
+            { name: "AWS EC2", icon: "", svgIcon: ec2Icon },
+            { name: "AWS Lambda", icon: "", svgIcon: lambdaIcon },
+            { name: "CloudWatch", icon: "", svgIcon: cloudwatchIcon },
+            { name: "Redshift", icon: "", svgIcon: redshiftIcon },
+            { name: "Docker", icon: "🐳" },
+        ],
     };
+
+    const certifications = [
+        {
+            imageSrc: "/image.png",
+            title: "Associate Cloud Engineer",
+            subtitle: "Google Cloud Certified",
+        },
+    ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -338,7 +364,11 @@ function TechStackSection() {
                                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={3} />
                                         <div className="relative bg-black rounded-xl p-4 h-full">
                                             <div className="flex items-center gap-3">
-                                                <span className="text-2xl">{tech.icon}</span>
+                                                {tech.svgIcon ? (
+                                                    <img src={tech.svgIcon} alt={tech.name} className="w-6 h-6 object-contain" />
+                                                ) : (
+                                                    <span className="text-2xl">{tech.icon}</span>
+                                                )}
                                                 <span className="font-medium text-white/80 text-sm">{tech.name}</span>
                                             </div>
                                         </div>
@@ -347,6 +377,21 @@ function TechStackSection() {
                             </div>
                         </motion.div>
                     ))}
+
+                    {/* Certifications Section with 3D Badge */}
+                    <motion.div variants={itemVariants} className="space-y-4">
+                        <h3 className="text-xl font-bold text-white/80">Certifications</h3>
+                        <div className="flex flex-wrap justify-center gap-8">
+                            {certifications.map((cert) => (
+                                <CertBadge3D
+                                    key={cert.title}
+                                    imageSrc={cert.imageSrc}
+                                    title={cert.title}
+                                    subtitle={cert.subtitle}
+                                />
+                            ))}
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

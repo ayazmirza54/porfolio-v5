@@ -12,7 +12,7 @@ import p5 from "@/assets/p5.png";
 import p6 from "@/assets/p6.png";
 import p7 from "@/assets/p7.gif";
 import p8 from "@/assets/p8.png";
-
+import p9 from "@/assets/p9.png";
 const Projects = () => {
     return (
         <section id="projects" className="min-h-screen px-4 py-20">
@@ -33,6 +33,53 @@ const Projects = () => {
                 {/* Main Projects */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     {/* Card 1 */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        viewport={{ once: true }}
+                        whileHover={{ y: -5 }}
+                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                    >
+                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
+                        <div className="relative bg-black rounded-xl p-5 h-full">
+                            <a href="#">
+                                <img
+                                    className="rounded-t-lg w-full"
+                                    src={p9}
+                                    alt=""
+                                />
+                            </a>
+                            <div className="p-5">
+                                <a href="#">
+                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
+                                        Draftbuddy
+                                    </h1>
+                                </a>
+                                <p className="mb-3 font-normal text-white/80">
+                                    Draftbuddy — Your buddy for better drafts and send them over a teams message,a slack ping, an email or a linkedin post
+                                </p>
+                                <div className="flex flex-row justify-center text-center gap-4">
+                                    <a
+                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        href="https://draftbuddyy.vercel.app/"
+                                    >
+                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                            🔗 Live Link
+                                        </span>
+                                    </a>
+                                    <a
+                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        href="https://github.com/ayazmirza54/draftbuddy/"
+                                    >
+                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                            <Github size={12} /> Github Link
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}

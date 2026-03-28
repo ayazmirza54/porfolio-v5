@@ -92,7 +92,7 @@ const SocialLinks = () => {
                     >
                         <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
                         <div className="relative bg-black rounded-xl p-6 h-full">
-                            <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+                            <div className="flex flex-col md:flex-row items-start justify-center  md:items-center gap-4">
                                 <div className="flex items-center gap-3">
                                     <Mail className="text-white/70" size={20} />
                                     <a href="mailto:ayazmirza54@gmail.com" className="text-white hover:text-white/80 transition-colors">

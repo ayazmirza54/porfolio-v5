@@ -1,3 +1,11 @@
+import awsIcon from "@/assets/aws.svg";
+import azureIcon from "@/assets/azure.svg";
+import gcpIcon from "@/assets/gcp.svg";
+import ec2Icon from "@/assets/ec2.svg";
+import lambdaIcon from "@/assets/lambda.svg";
+import cloudwatchIcon from "@/assets/cloudwatch.svg";
+import redshiftIcon from "@/assets/redshift.svg";
+import shellIcon from "@/assets/shell.png";
 // ============ Personal Information ============
 export const PERSONAL_INFO = {
     name: "Ayaz Mirza",
@@ -63,7 +71,7 @@ export const TECH_STACK = {
         { name: "HTML5", icon: "🌐" },
         { name: "CSS3", icon: "🎨" },
         { name: "Markdown", icon: "📝" },
-        { name: "Shell Script", icon: "💻" },
+        { name: "Shell Script", icon: "", svgIcon: shellIcon },
         { name: "C++", icon: "⚙️" },
         { name: "C", icon: "🔧" },
     ],
@@ -92,24 +100,47 @@ export const TECH_STACK = {
         { name: "Claude AI", icon: "🤖" },
         { name: "ChatGPT", icon: "🤖" },
     ],
+    "Cloud Technologies & Certifications": [
+        { name: "AWS", icon: "", svgIcon: awsIcon },
+        { name: "Azure", icon: "", svgIcon: azureIcon },
+        { name: "GCP", icon: "", svgIcon: gcpIcon },
+        { name: "AWS EC2", icon: "", svgIcon: ec2Icon },
+        { name: "AWS Lambda", icon: "", svgIcon: lambdaIcon },
+        { name: "CloudWatch", icon: "", svgIcon: cloudwatchIcon },
+        { name: "Redshift", icon: "", svgIcon: redshiftIcon },
+        { name: "Docker", icon: "🐳" },
+    ],
 };
 
 // ============ Work Experience ============
 export const WORK_EXPERIENCE = [
     {
-        title: "Senior Consultant",
-        company: "Wipro Limited",
+        title: "Data Engineer (Platform Team)",
+        company: "Wipro Limited — Aldermore Bank",
         status: "Current",
-        duration: "Nov 2019 - Present",
+        duration: "Nov2025 - Present",
         location: "Greater Noida, India",
         responsibilities: [
-            "Worked on Ab Initio ETL tool to process client side information and provide valuable insights",
-            "Extensive experience in designing graphs, scheduling jobs through Control Centre",
-            "Proficiently scripting Unix shell commands for ETL optimization",
-            "Monitoring ETL job execution and addressing issues to minimize delays",
-            "Created shell scripts to automate monitoring of critical server metrics",
-            "Leveraged Grafana, Control Center, Queryit, and SQLExplorer for operational efficiency",
-            "Appointed as L2, providing guidance to L1 teammates",
+            "Transitioned into a UK-based financial services client (Aldermore Bank) as a Data Engineer on the Ab Initio Platform team, managing the group data platform end-to-end",
+            "Administered and maintained a hybrid infrastructure integrating AWS services (EC2, Redshift, CloudWatch) with core Ab Initio products including Control Center, GDE, Metadata Hub Portal, and Authorization Gateway",
+            "Monitored Ab Initio job execution on AWS infrastructure, proactively identifying and resolving pipeline failures to meet banking SLAs",
+            "Performed platform administration tasks including OS user provisioning and Ab Initio license key installation and management",
+            "Authored Redshift SQL scripts as part of the release management process to promote data artifacts and configurations from UAT to Production environments",
+        ],
+    },
+    {
+        title: "Senior Consultant",
+        company: "Wipro Limited — Indonesian Telecom Client",
+        status: "Completed",
+        duration: "Nov 2019 - Oct 2025",
+        location: "Greater Noida, India",
+        responsibilities: [
+            "Developed and optimized Ab Initio ETL pipelines using the Graphical Development Environment (GDE) to process large-scale telecom data and deliver actionable business insights",
+            "Designed and scheduled Ab Initio graphs and jobs through Control Center, ensuring reliable pipeline orchestration and SLA adherence",
+            "Built operational dashboards in Grafana to visualize key telecom metrics and support proactive monitoring",
+            "Automated Splunk log processing using Unix shell scripting, significantly reducing manual log analysis overhead",
+            "Implemented auto-restart scripts using Ansible and shell scripting to minimize downtime for critical Ab Initio jobs",
+            "Proficiently scripted Unix shell commands for ETL optimization, server metric monitoring, and operational automation",
         ],
     },
     {
@@ -133,6 +164,14 @@ export const WORK_EXPERIENCE = [
 export const WEBDEV_AI_PROJECTS = [
     {
         id: 1,
+        title: "Draftbuddy",
+        description: "DraftBuddy — Your buddy for better drafts and send them over a teams message,a slack ping, an email or a linkedin post",
+        image: "p9",
+        liveLink: "https://draftbuddyy.vercel.app/",
+        githubLink: "https://github.com/ayazmirza54/draftbuddy/",
+    },
+    {
+        id: 2,
         title: "Text to Content AI",
         description: "Text to Content AI is an AI-powered tool that converts text into content. It uses the Gemini API to generate content based on the text input.",
         image: "p1",
@@ -140,7 +179,7 @@ export const WEBDEV_AI_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/text-to-content-ai/",
     },
     {
-        id: 2,
+        id: 3,
         title: "Intellisketch : AI powered drawing tool 🖌️",
         description: "IntelliSketch is an AI-powered drawing app that uses Google Gemini API to interpret and solve mathematical sketches and graphical problems in real-time.",
         image: "p2",
@@ -148,7 +187,7 @@ export const WEBDEV_AI_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/intellisketch/",
     },
     {
-        id: 3,
+        id: 4,
         title: "Text/Code Utils.AI",
         description: "Text and Code Utilities: AI-enhanced tool by Google Gemini, offering streamlined text analysis and code generation.",
         image: "p3",
@@ -156,7 +195,7 @@ export const WEBDEV_AI_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/text-code-util.aiprod/",
     },
     {
-        id: 4,
+        id: 5,
         title: "Chat2pdf using gemini",
         description: "AI-powered app for conversational PDF interaction using Gemini and LangChain.",
         image: "p4",
@@ -168,7 +207,7 @@ export const WEBDEV_AI_PROJECTS = [
 // ============ Projects: DevOps ============
 export const DEVOPS_PROJECTS = [
     {
-        id: 5,
+        id: 6,
         title: "📜 UnixBot",
         description: "UnixBot is a chatbot that can be used to chat about unix commands. It uses the Gemini API to generate responses.",
         image: "p5",
@@ -176,7 +215,7 @@ export const DEVOPS_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/unixbot",
     },
     {
-        id: 6,
+        id: 7,
         title: "⚒️ QuerySmith",
         description: "QuerySmith is a chatbot that can be used to generate SQL queries. It uses the Gemini API to generate responses.",
         image: "p6",
@@ -184,7 +223,7 @@ export const DEVOPS_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/chat-with-db",
     },
     {
-        id: 7,
+        id: 8,
         title: "EC2 Manager TUI",
         description: "A CLI tool to manage EC2 instances. It uses the AWS SDK for Python to interact with the AWS API.",
         image: "p7",
@@ -192,7 +231,7 @@ export const DEVOPS_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/ec2-manager-tui",
     },
     {
-        id: 8,
+        id: 9,
         title: "📌 Keep Alive EC2 Script",
         description: "This script keeps an EC2 instance alive by pinging it every 10 minutes.",
         image: "p8",
@@ -200,7 +239,7 @@ export const DEVOPS_PROJECTS = [
         githubLink: "https://github.com/ayazmirza54/pingservice",
     },
     {
-        id: 9,
+        id: 10,
         title: "System Metrics Logging Script",
         description: "This script logs system metrics (CPU usage and memory usage) to a PostgreSQL database.",
         image: "/system-metrics.png",
@@ -212,7 +251,7 @@ export const DEVOPS_PROJECTS = [
 // ============ Projects: Other Noteworthy ============
 export const OTHER_PROJECTS = [
     {
-        id: 10,
+        id: 11,
         title: "Studysensie",
         description: "Quiz Generator using Gemini AI API",
         githubLink: "https://github.com/ayazmirza54/studysensei/",
@@ -220,7 +259,7 @@ export const OTHER_PROJECTS = [
         technologies: ["React", "TailwindCSS", "Gemini AI API"],
     },
     {
-        id: 11,
+        id: 12,
         title: "Movie-Finder",
         description: "Movie Finder app using the Movie Database API",
         githubLink: "https://github.com/ayazmirza54/movie-finder",
@@ -228,7 +267,7 @@ export const OTHER_PROJECTS = [
         technologies: ["JavaScript", "HTML/CSS", "Movie Database API"],
     },
     {
-        id: 12,
+        id: 13,
         title: "Stone-Paper-Scissor-Game",
         description: "Stone Paper Scissor Game using React and TailwindCSS",
         githubLink: null,
@@ -236,7 +275,7 @@ export const OTHER_PROJECTS = [
         technologies: ["HTML/CSS", "JavaScript"],
     },
     {
-        id: 13,
+        id: 14,
         title: "Quote-Generator",
         description: "Quote Generator using an external API",
         githubLink: null,
