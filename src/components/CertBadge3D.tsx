@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface CertBadge3DProps {
@@ -15,6 +15,41 @@ export default function CertBadge3D({ imageSrc, title, subtitle, link }: CertBad
     const [glareX, setGlareX] = useState(50);
     const [glareY, setGlareY] = useState(50);
     const [isHovering, setIsHovering] = useState(false);
+
+    // Spin animation state
+    const [spinAngle, setSpinAngle] = useState(0);
+    const spinStartTime = useRef<number | null>(null);
+    const rafId = useRef<number | null>(null);
+    const hasSpun = useRef(false);
+
+    const SPIN_DURATION = 800; // ms for one full 360° rotation
+
+    const animateSpin = useCallback((timestamp: number) => {
+        if (spinStartTime.current === null) {
+            spinStartTime.current = timestamp;
+        }
+
+        const elapsed = timestamp - spinStartTime.current;
+        const progress = Math.min(elapsed / SPIN_DURATION, 1);
+
+        // Ease-in-out cubic for a smooth spin
+        const eased =
+            progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        setSpinAngle(eased * 360);
+
+        if (progress < 1) {
+            rafId.current = requestAnimationFrame(animateSpin);
+        } else {
+            // Spin complete
+            setSpinAngle(360); // Keep at 360 (visually same as 0) to avoid snap
+            hasSpun.current = true;
+            rafId.current = null;
+            spinStartTime.current = null;
+        }
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!containerRef.current) return;
@@ -44,11 +79,33 @@ export default function CertBadge3D({ imageSrc, title, subtitle, link }: CertBad
         setGlareX(50);
         setGlareY(50);
         setIsHovering(false);
+        setSpinAngle(0);
+        hasSpun.current = false;
+        spinStartTime.current = null;
+        if (rafId.current !== null) {
+            cancelAnimationFrame(rafId.current);
+            rafId.current = null;
+        }
     };
 
     const handleMouseEnter = () => {
         setIsHovering(true);
+        // Kick off the spin animation
+        hasSpun.current = false;
+        spinStartTime.current = null;
+        rafId.current = requestAnimationFrame(animateSpin);
     };
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (rafId.current !== null) {
+                cancelAnimationFrame(rafId.current);
+            }
+        };
+    }, []);
+
+    const totalRotateY = rotateY + spinAngle;
 
     const content = (
         <motion.div
@@ -74,7 +131,7 @@ export default function CertBadge3D({ imageSrc, title, subtitle, link }: CertBad
             <div
                 className="cert-badge-3d-card"
                 style={{
-                    transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${isHovering ? 1.05 : 1})`,
+                    transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${totalRotateY}deg) scale(${isHovering ? 1.05 : 1})`,
                 }}
             >
                 {/* Badge image */}
@@ -132,3 +189,4 @@ export default function CertBadge3D({ imageSrc, title, subtitle, link }: CertBad
 
     return content;
 }
+
