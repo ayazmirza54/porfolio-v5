@@ -261,54 +261,144 @@ function AboutSection() {
     );
 }
 
-// ============ Tech Stack Section ============
+// ============ Tech Stack Marquee Strip ============
+const accentColors = [
+    "from-cyan-500/20 to-blue-500/20 border-cyan-500/30",
+    "from-violet-500/20 to-purple-500/20 border-violet-500/30",
+    "from-emerald-500/20 to-teal-500/20 border-emerald-500/30",
+    "from-orange-500/20 to-amber-500/20 border-orange-500/30",
+    "from-pink-500/20 to-rose-500/20 border-pink-500/30",
+];
+
+const accentDot = [
+    "bg-cyan-400",
+    "bg-violet-400",
+    "bg-emerald-400",
+    "bg-orange-400",
+    "bg-pink-400",
+];
+
+function MarqueeRow({
+    techs,
+    direction = "left",
+}: {
+    techs: { name: string; icon: string; svgIcon?: string }[];
+    direction?: "left" | "right" | "left-slow";
+}) {
+    // Duplicate twice so seamless loop always has enough content
+    const items = [...techs, ...techs, ...techs, ...techs];
+    const trackClass =
+        direction === "right"
+            ? "marquee-track marquee-track--right"
+            : direction === "left-slow"
+                ? "marquee-track marquee-track--left-slow"
+                : "marquee-track marquee-track--left";
+
+    return (
+        <div className="marquee-viewport py-1">
+            <div className={trackClass}>
+                {items.map((tech, i) => (
+                    <div
+                        key={`${tech.name}-${i}`}
+                        className="flex-shrink-0 mx-2 flex items-center gap-2.5 px-4 py-2.5
+                                   rounded-xl border border-white/20 bg-[#111]
+                                   hover:bg-[#1c1c1c] hover:border-white/40
+                                   transition-colors duration-300 cursor-default group"
+                    >
+                        {tech.svgIcon ? (
+                            <img
+                                src={tech.svgIcon}
+                                alt={tech.name}
+                                className="w-5 h-5 object-contain flex-shrink-0
+                                           group-hover:scale-110 transition-transform duration-300"
+                            />
+                        ) : (
+                            <span className="text-xl leading-none flex-shrink-0
+                                            group-hover:scale-110 transition-transform duration-300">
+                                {tech.icon}
+                            </span>
+                        )}
+                        <span className="text-white/70 text-sm font-medium whitespace-nowrap
+                                         group-hover:text-white transition-colors duration-300">
+                            {tech.name}
+                        </span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 function TechStackSection() {
-    const technologies: Record<string, { name: string; icon: string; svgIcon?: string }[]> = {
-        "Languages": [
-            { name: "JavaScript", icon: "⚡" },
-            { name: "HTML5", icon: "🌐" },
-            { name: "CSS3", icon: "🎨" },
-            { name: "Markdown", icon: "📝" },
-            { name: "Shell Script", icon: "", svgIcon: shellIcon },
-            { name: "C++", icon: "⚙️" },
-            { name: "C", icon: "🔧" },
-        ],
-        "Frameworks & Libraries": [
-            { name: "React", icon: "⚛️" },
-            { name: "React Router", icon: "🛣️" },
-            { name: "Express.js", icon: "🚂" },
-            { name: "Node.js", icon: "📦" },
-            { name: "TailwindCSS", icon: "💨" },
-            { name: "Bootstrap", icon: "🅱️" },
-        ],
-        "Databases": [
-            { name: "MySQL", icon: "🗄️" },
-            { name: "PostgreSQL", icon: "🐘" },
-        ],
-        "Tools & Platforms": [
-            { name: "Canva", icon: "🎨" },
-            { name: "Figma", icon: "🎯" },
-            { name: "Ansible", icon: "🔄" },
-            { name: "Notion", icon: "📓" },
-            { name: "Git", icon: "🔄" },
-            { name: "Ab Initio ETL", icon: "🏭" },
-            { name: "Power BI", icon: "📊" },
-            { name: "Grafana", icon: "📈" },
-            { name: "Gemini AI", icon: "🤖" },
-            { name: "Claude AI", icon: "🤖" },
-            { name: "ChatGPT", icon: "🤖" },
-        ],
-        "Cloud Technologies": [
-            { name: "AWS", icon: "", svgIcon: awsIcon },
-            { name: "Azure", icon: "", svgIcon: azureIcon },
-            { name: "GCP", icon: "", svgIcon: gcpIcon },
-            { name: "AWS EC2", icon: "", svgIcon: ec2Icon },
-            { name: "AWS Lambda", icon: "", svgIcon: lambdaIcon },
-            { name: "CloudWatch", icon: "", svgIcon: cloudwatchIcon },
-            { name: "Redshift", icon: "", svgIcon: redshiftIcon },
-            { name: "Docker", icon: "🐳" },
-        ],
-    };
+    const categories: { label: string; techs: { name: string; icon: string; svgIcon?: string }[] }[] = [
+        {
+            label: "Languages",
+            techs: [
+                { name: "JavaScript", icon: "⚡" },
+                { name: "HTML5", icon: "🌐" },
+                { name: "CSS3", icon: "🎨" },
+                { name: "Markdown", icon: "📝" },
+                { name: "Shell Script", icon: "", svgIcon: shellIcon },
+                { name: "C++", icon: "⚙️" },
+                { name: "C", icon: "🔧" },
+            ],
+        },
+        {
+            label: "Frameworks & Libraries",
+            techs: [
+                { name: "React", icon: "⚛️" },
+                { name: "React Router", icon: "🛣️" },
+                { name: "Express.js", icon: "🚂" },
+                { name: "Node.js", icon: "📦" },
+                { name: "TailwindCSS", icon: "💨" },
+                { name: "Bootstrap", icon: "🅱️" },
+            ],
+        },
+        {
+            label: "Databases",
+            techs: [
+                { name: "MySQL", icon: "🗄️" },
+                { name: "PostgreSQL", icon: "🐘" },
+            ],
+        },
+        {
+            label: "Tools & Platforms",
+            techs: [
+                { name: "Canva", icon: "🎨" },
+                { name: "Figma", icon: "🎯" },
+                { name: "Ansible", icon: "🔄" },
+                { name: "Notion", icon: "📓" },
+                { name: "Git", icon: "🔀" },
+                { name: "Ab Initio ETL", icon: "🏭" },
+                { name: "Power BI", icon: "📊" },
+                { name: "Grafana", icon: "📈" },
+                { name: "Gemini AI", icon: "🤖" },
+                { name: "Claude AI", icon: "🧠" },
+                { name: "ChatGPT", icon: "💬" },
+            ],
+        },
+        {
+            label: "Cloud Technologies",
+            techs: [
+                { name: "AWS", icon: "", svgIcon: awsIcon },
+                { name: "Azure", icon: "", svgIcon: azureIcon },
+                { name: "GCP", icon: "", svgIcon: gcpIcon },
+                { name: "AWS EC2", icon: "", svgIcon: ec2Icon },
+                { name: "AWS Lambda", icon: "", svgIcon: lambdaIcon },
+                { name: "CloudWatch", icon: "", svgIcon: cloudwatchIcon },
+                { name: "Redshift", icon: "", svgIcon: redshiftIcon },
+                { name: "Docker", icon: "🐳" },
+            ],
+        },
+    ];
+
+    const directions: ("left" | "right" | "left-slow")[] = [
+        "left",
+        "right",
+        "left-slow",
+        "right",
+        "left",
+    ];
 
     const certifications = [
         {
@@ -318,82 +408,80 @@ function TechStackSection() {
         },
     ];
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
-    };
-
     return (
-        <section id="tech-stack" className="min-h-screen flex flex-col justify-center px-4 py-20">
-            <div className="max-w-6xl mx-auto w-full">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Tech Stack</h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full" />
-                </motion.div>
+        <section id="tech-stack" className="flex flex-col justify-center py-24 overflow-hidden">
+            {/* Section header */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-16 px-4"
+            >
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Tech Stack</h2>
+                <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full" />
+                <p className="text-white/40 text-sm mt-4 tracking-widest uppercase">
+                    Hover any strip to pause · scroll to explore
+                </p>
+            </motion.div>
 
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="grid gap-10"
-                >
-                    {Object.entries(technologies).map(([category, techs]) => (
-                        <motion.div key={category} variants={itemVariants} className="space-y-4">
-                            <h3 className="text-xl font-bold text-white/80">{category}</h3>
-                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                                {techs.map((tech) => (
-                                    <motion.div
-                                        key={tech.name}
-                                        variants={itemVariants}
-                                        whileHover={{ scale: 1.05, y: -5 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="relative rounded-2xl border-2 border-gray-600 p-1"
-                                    >
-                                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={3} />
-                                        <div className="relative bg-black rounded-xl p-4 h-full">
-                                            <div className="flex items-center gap-3">
-                                                {tech.svgIcon ? (
-                                                    <img src={tech.svgIcon} alt={tech.name} className="w-6 h-6 object-contain" />
-                                                ) : (
-                                                    <span className="text-2xl">{tech.icon}</span>
-                                                )}
-                                                <span className="font-medium text-white/80 text-sm">{tech.name}</span>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
-
-                    {/* Certifications Section with 3D Badge */}
-                    <motion.div variants={itemVariants} className="space-y-4">
-                        <h3 className="text-xl font-bold text-white/80">Certifications</h3>
-                        <div className="flex flex-wrap justify-center gap-8">
-                            {certifications.map((cert) => (
-                                <CertBadge3D
-                                    key={cert.title}
-                                    imageSrc={cert.imageSrc}
-                                    title={cert.title}
-                                    subtitle={cert.subtitle}
-                                />
-                            ))}
+            {/* Marquee rows */}
+            <div className="flex flex-col gap-6">
+                {categories.map((cat, idx) => (
+                    <motion.div
+                        key={cat.label}
+                        initial={{ opacity: 0, x: directions[idx] === "right" ? 60 : -60 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: idx * 0.08 }}
+                        viewport={{ once: true }}
+                        className="relative"
+                    >
+                        {/* Category label */}
+                        <div className="flex items-center gap-3 px-6 mb-3">
+                            <span className={`w-2 h-2 rounded-full ${accentDot[idx % accentDot.length]}`} />
+                            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white/40">
+                                {cat.label}
+                            </span>
+                            <div className="h-px flex-1 bg-white/[0.06]" />
                         </div>
+
+                        {/* Gradient band behind each strip */}
+                        <div
+                            className={`absolute inset-y-6 inset-x-0 rounded-2xl bg-gradient-to-r ${accentColors[idx % accentColors.length]}
+                                        border opacity-50 blur-sm pointer-events-none`}
+                        />
+
+                        <MarqueeRow techs={cat.techs} direction={directions[idx]} />
                     </motion.div>
-                </motion.div>
+                ))}
             </div>
+
+            {/* Certifications */}
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="mt-20 px-4"
+            >
+                <div className="flex items-center gap-3 mb-8 max-w-6xl mx-auto">
+                    <span className="w-2 h-2 rounded-full bg-yellow-400" />
+                    <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white/40">
+                        Certifications
+                    </span>
+                    <div className="h-px flex-1 bg-white/[0.06]" />
+                </div>
+                <div className="flex flex-wrap justify-center gap-8">
+                    {certifications.map((cert) => (
+                        <CertBadge3D
+                            key={cert.title}
+                            imageSrc={cert.imageSrc}
+                            title={cert.title}
+                            subtitle={cert.subtitle}
+                        />
+                    ))}
+                </div>
+            </motion.div>
         </section>
     );
 }
