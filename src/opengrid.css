@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'OpenGrid Display';
+  src: url('/fonts/OpenGridDisplay-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --font-opengrid: 'OpenGrid Display', 'JetBrains Mono', ui-monospace, monospace;
+}
+
+h1,
+h2,
+h1 *,
+h2 *,
+.font-opengrid,
+.font-opengrid * {
+  font-family: var(--font-opengrid) !important;
+  font-synthesis: none;
+}
+
+h1,
+h2,
+.font-opengrid {
+  font-weight: 500 !important;
+  letter-spacing: 0.035em;
+  line-height: 0.94;
+  text-transform: uppercase;
+  text-wrap: balance;
+  text-shadow: 0 0 24px rgba(130, 160, 255, 0.09);
+}
+
+h1 {
+  letter-spacing: 0.025em;
+}
+
+@media (max-width: 640px) {
+  h1,
+  h2,
+  .font-opengrid {
+    letter-spacing: 0.02em;
+    line-height: 0.98;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  h1,
+  h2,
+  .font-opengrid {
+    transition: letter-spacing 180ms ease, text-shadow 180ms ease;
+  }
+}
