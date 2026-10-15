@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CanvasRevealEffect } from "@/components/ui/sign-in-flow-1";
+import GradientASCII from "@/components/GradientASCII";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import Projects from "@/components/Projects";
@@ -121,8 +121,8 @@ function HeroSection() {
                 </motion.div>
 
                 <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                    <h3 className="text-[50px]">
-                        Hi, I'm</h3>
+                    <span className="block text-[50px]">
+                        Hi, I'm</span>
                     <GradientText
                         colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
                         animationSpeed={3}
@@ -489,26 +489,24 @@ function TechStackSection() {
 
 // ============ Main Portfolio Component ============
 export function Portfolio() {
-    const [initialCanvasVisible] = useState(true);
-
     return (
         <div className="flex w-full flex-col min-h-screen bg-black relative">
-            {/* Shader Background */}
-            <div className="fixed inset-0 z-0">
-                {initialCanvasVisible && (
-                    <div className="absolute inset-0">
-                        <CanvasRevealEffect
-                            animationSpeed={3}
-                            containerClassName="bg-black"
-                            colors={[[255, 255, 255], [255, 255, 255]]}
-                            dotSize={6}
-                            opacities={[0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1]}
-                            reverse={false}
-                        />
-                    </div>
-                )}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,1)_0%,_transparent_100%)]" />
-                <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black to-transparent" />
+            {/* Decorative background stays behind the content and never captures clicks. */}
+            <div className="portfolio-background fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+                <GradientASCII
+                    colors={['#1e3fd8', '#f6f8ff', '#a5d8ff', '#38bdf8']}
+                    shape="horizon"
+                    cellSize={18}
+                    density={0.8}
+                    glyphOpacity={0.85}
+                    gradientOpacity={0.35}
+                    glow={0.2}
+                    grain={0.025}
+                    speed={0.6}
+                    dpr={1.25}
+                    fontFamily='"JetBrains Mono", monospace'
+                />
+                <div className="portfolio-background-shade absolute inset-0" />
             </div>
 
             {/* Content */}
