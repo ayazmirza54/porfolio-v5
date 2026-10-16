@@ -493,20 +493,15 @@ export function Portfolio() {
         <div className="flex w-full flex-col min-h-screen bg-black relative">
             {/* Decorative background stays behind the content and never captures clicks. */}
             <div className="portfolio-background fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
-                <GradientASCII
-                    colors={['#1e3fd8', '#f6f8ff', '#a5d8ff', '#38bdf8']}
-                    shape="horizon"
-                    cellSize={18}
-                    density={0.8}
-                    glyphOpacity={0.85}
-                    gradientOpacity={0.35}
-                    glow={0.2}
-                    grain={0.025}
-                    speed={0.6}
-                    dpr={1.25}
-                    fontFamily='"JetBrains Mono", monospace'
-                />
-                <div className="portfolio-background-shade absolute inset-0" />
+                <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+                    <GradientASCII
+                        colors={['#1e3fd8', '#f6f8ff', '#a5d8ff', '#38bdf8']}
+                        shape="horizon"
+                        characters=" =+xX0S8#@"
+                        cellSize={18}
+                        density={0.8}
+                    />
+                </div>
             </div>
 
             {/* Content */}
