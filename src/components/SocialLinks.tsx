@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { FaLinkedin, FaGithub, FaTwitter, FaDev } from "react-icons/fa";
 import { Mail, Phone } from "lucide-react";
 
@@ -24,7 +23,7 @@ const SocialLinks = () => {
                     <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
                         📬 Get In Touch
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full" />
+                    <div className="section-rule mx-auto" />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -34,10 +33,10 @@ const SocialLinks = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         viewport={{ once: true }}
-                        className="md:col-span-8 relative rounded-2xl border-2 border-gray-600 p-2"
+                        className="md:col-span-8 surface-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-6 h-full flex flex-col md:flex-row justify-center items-center gap-4">
+
+                        <div className="surface-content p-6 h-full flex flex-col md:flex-row justify-center items-center gap-4">
                             <h3 className="text-4xl md:text-6xl font-jersey text-white uppercase">
                                 AM
                             </h3>
@@ -53,10 +52,10 @@ const SocialLinks = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="md:col-span-4 md:row-span-2 relative rounded-2xl border-2 border-gray-600 p-2"
+                        className="md:col-span-4 md:row-span-2 surface-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-4 h-full flex flex-col gap-3">
+
+                        <div className="surface-content p-4 h-full flex flex-col gap-3">
                             {socialLinks.map((social, index) => (
                                 <motion.a
                                     key={social.platform}
@@ -68,7 +67,7 @@ const SocialLinks = () => {
                                     transition={{ delay: 0.3 + index * 0.1 }}
                                     viewport={{ once: true }}
                                     whileHover={{ scale: 1.02 }}
-                                    className="relative rounded-xl border border-gray-700 p-3 bg-black hover:bg-white/10 transition-all"
+                                    className="contact-link p-3"
                                 >
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-3 text-white">
@@ -88,10 +87,10 @@ const SocialLinks = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
                         viewport={{ once: true }}
-                        className="md:col-span-8 relative rounded-2xl border-2 border-gray-600 p-2"
+                        className="md:col-span-8 surface-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-6 h-full">
+
+                        <div className="surface-content p-6 h-full">
                             <div className="flex flex-col md:flex-row items-start justify-center  md:items-center gap-4">
                                 <div className="flex items-center gap-3">
                                     <Mail className="text-white/70" size={20} />

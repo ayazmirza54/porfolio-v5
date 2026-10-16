@@ -1,0 +1,163 @@
+/* Quiet surfaces frame the content while the ASCII horizon supplies the color. */
+.portfolio-page {
+  --surface: rgba(9, 13, 20, 0.94);
+  --surface-hover: rgba(13, 20, 30, 0.97);
+  --line: rgba(165, 190, 214, 0.13);
+  --line-hover: rgba(165, 216, 255, 0.28);
+  --accent: #a5d8ff;
+  --muted: #9aa9b9;
+}
+
+.portfolio-page .surface-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  padding: 0;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.portfolio-page main > section { scroll-margin-top: 110px; }
+
+.portfolio-page .surface-card:hover,
+.portfolio-page .surface-card:focus-within {
+  border-color: var(--line-hover);
+  background: var(--surface-hover);
+}
+
+.portfolio-page .surface-content {
+  position: relative;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.portfolio-page .project-card > .surface-content {
+  padding: 24px;
+}
+
+.portfolio-page .project-card:has(.project-preview) > .surface-content {
+  padding: 12px;
+}
+
+.portfolio-page .project-card .project-preview {
+  border-radius: 8px;
+}
+
+.portfolio-page .project-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(165, 216, 255, 0.04);
+  color: var(--muted);
+  font-size: 11px;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.portfolio-page .project-link:hover {
+  background: rgba(165, 216, 255, 0.09);
+  color: var(--accent);
+}
+
+.portfolio-page .project-tag,
+.portfolio-page .platform-label {
+  color: var(--muted);
+  background: rgba(165, 216, 255, 0.05);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.portfolio-page .portfolio-nav {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(8, 13, 21, 0.88);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
+}
+
+.portfolio-page .welcome-label {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(8, 13, 21, 0.7);
+}
+
+.portfolio-page .hero-social {
+  color: #b8c5d2;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(9, 13, 20, 0.72);
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.portfolio-page .hero-social:hover {
+  color: var(--accent);
+  border-color: var(--line-hover);
+  background: var(--surface-hover);
+}
+
+.portfolio-page .scroll-cue {
+  border: 1px solid var(--line-hover);
+  border-radius: 12px;
+}
+
+.portfolio-page .section-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--line-hover);
+}
+
+.portfolio-page .tech-chip {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.portfolio-page .tech-chip:hover {
+  border-color: var(--line-hover);
+  background: var(--surface-hover);
+}
+
+.portfolio-page .category-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.portfolio-page .contact-link {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  transition: background-color 180ms ease;
+}
+
+.portfolio-page .contact-link:last-child { border-bottom: 0; }
+.portfolio-page .contact-link:hover { background: rgba(165, 216, 255, 0.04); }
+
+.portfolio-page .cert-badge-3d-image-container {
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.portfolio-page .cert-badge-3d-ring {
+  border: 1px solid var(--line-hover);
+  background: none;
+  animation: none;
+}
+
+.portfolio-page .cert-badge-3d-glow { opacity: 0.1 !important; }
+
+.portfolio-page a:not(.gradient-button):not(.gradient-button a):focus-visible,
+.portfolio-page button:not(.gradient-button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .portfolio-page .surface-content { padding: 20px; }
+  .portfolio-page .project-card > .surface-content { padding: 20px; }
+  .portfolio-page .project-card:has(.project-preview) > .surface-content { padding: 8px; }
+  .portfolio-page .project-tag { font-size: 10px; }
+}

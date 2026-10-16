@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 const Blogs = () => {
     const blogs = [
@@ -51,7 +50,7 @@ const Blogs = () => {
                     <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
                         📝 Blogs
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                    <div className="section-rule mx-auto" />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -65,11 +64,11 @@ const Blogs = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            whileHover={{ y: -5 }}
-                            className="block relative rounded-2xl border-2 border-gray-600 p-2"
+                            whileHover={{ y: -2 }}
+                            className="block surface-card"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-6 h-full">
+
+                            <div className="surface-content p-6 h-full">
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="text-xl font-bold text-white group-hover:text-gray-300 transition-colors pr-4">
                                         {blog.title}
@@ -87,7 +86,7 @@ const Blogs = () => {
                                         <span>•</span>
                                         <span>{blog.readTime}</span>
                                     </div>
-                                    <span className="text-white font-medium px-3 py-1 bg-white/10 rounded-full">
+                                    <span className="platform-label">
                                         {blog.platform}
                                     </span>
                                 </div>

@@ -1,6 +1,5 @@
 import { Calendar, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
 // @ts-ignore
 import { WORK_EXPERIENCE } from "@/constants";
 const WorkExp = () => {
@@ -17,7 +16,7 @@ const WorkExp = () => {
                     <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
                         Work Experience
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full" />
+                    <div className="section-rule mx-auto" />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -28,11 +27,11 @@ const WorkExp = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * (index + 1) }}
                             viewport={{ once: true }}
-                            whileHover={{ y: -5 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
+                            whileHover={{ y: -2 }}
+                            className="surface-card"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-6 h-full">
+
+                            <div className="surface-content p-6 h-full">
                                 <div className="flex justify-between items-start mb-4">
                                     <h1 className="text-xl md:text-2xl font-bold text-white">
                                         {exp.title}

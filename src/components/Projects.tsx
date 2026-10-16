@@ -1,7 +1,6 @@
 import { Github, ArrowUpRight } from "lucide-react";
 import { FaServer } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 // Import project images
 import p1 from "@/assets/p1.png";
@@ -27,7 +26,7 @@ const Projects = () => {
                     <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
                         🕸️Webdev 🫱🏽‍🫲🏾 AI🤖 Projects
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-pink-500 mx-auto rounded-full" />
+                    <div className="section-rule mx-auto" />
                 </motion.div>
 
                 {/* Main Projects */}
@@ -38,14 +37,14 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
                                 <img
-                                    className="rounded-t-lg w-full"
+                                    className="project-preview w-full"
                                     src={p9}
                                     alt=""
                                 />
@@ -61,18 +60,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://draftbuddyy.vercel.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/draftbuddy/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -85,14 +84,14 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
                                 <img
-                                    className="rounded-t-lg w-full"
+                                    className="project-preview w-full"
                                     src={p1}
                                     alt=""
                                 />
@@ -108,18 +107,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://texttocontent.vercel.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/text-to-content-ai/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -134,13 +133,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p2} alt="" />
+                                <img className="project-preview w-full" src={p2} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -153,18 +152,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://intellisketch.vercel.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/intellisketch/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -179,13 +178,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p3} alt="" />
+                                <img className="project-preview w-full" src={p3} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -198,18 +197,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://text-code-util-aiprod.vercel.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/text-code-util.aiprod/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -224,13 +223,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p4} alt="" />
+                                <img className="project-preview w-full" src={p4} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -243,18 +242,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://chat2pdf-using-gemini.streamlit.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/chat2pdf-using-gemini"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -275,7 +274,7 @@ const Projects = () => {
                     <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
                         Devops Projects
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full" />
+                    <div className="section-rule mx-auto" />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -285,13 +284,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p5} alt="" />
+                                <img className="project-preview w-full" src={p5} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -304,18 +303,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://unix-bot.streamlit.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/unixbot"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -330,13 +329,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p6} alt="" />
+                                <img className="project-preview w-full" src={p6} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -349,18 +348,18 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://query-smith.streamlit.app/"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             🔗 Live Link
                                         </span>
                                     </a>
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/chat-with-db"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -375,13 +374,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p7} alt="" />
+                                <img className="project-preview w-full" src={p7} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -394,10 +393,10 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/ec2-manager-tui"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -412,13 +411,13 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
+
+                        <div className="surface-content p-5 h-full">
                             <a href="#">
-                                <img className="rounded-t-lg w-full" src={p8} alt="" />
+                                <img className="project-preview w-full" src={p8} alt="" />
                             </a>
                             <div className="p-5">
                                 <a href="#">
@@ -431,10 +430,10 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/pingservice"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -449,14 +448,11 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
                         viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
+                        whileHover={{ y: -2 }}
+                        className="surface-card project-card"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src="/system-metrics.png" alt="" />
-                            </a>
+
+                        <div className="surface-content p-5 h-full">
                             <div className="p-5">
                                 <a href="#">
                                     <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
@@ -468,10 +464,10 @@ const Projects = () => {
                                 </p>
                                 <div className="flex flex-row justify-center text-center gap-4">
                                     <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
+                                        className="project-link"
                                         href="https://github.com/ayazmirza54/system-metrics-monitoring-script"
                                     >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
+                                        <span className="inline-flex items-center gap-2">
                                             <Github size={12} /> Github Link
                                         </span>
                                     </a>
@@ -490,16 +486,16 @@ const Projects = () => {
                     className="mt-16"
                 >
                     <h2 className="text-2xl md:text-4xl font-bold mb-6 text-white">Other Noteworthy Projects</h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mb-8" />
+                    <div className="section-rule mb-8" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Small Project Card 1 */}
                         <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
+                            whileHover={{ y: -2 }}
+                            className="surface-card project-card"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
+
+                            <div className="surface-content p-4 h-full">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <h1 className="text-lg font-semibold mb-2 text-white">Studysensie</h1>
@@ -515,20 +511,20 @@ const Projects = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">React</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">TailwindCSS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">Gemini AI API</span>
+                                    <span className="project-tag">React</span>
+                                    <span className="project-tag">TailwindCSS</span>
+                                    <span className="project-tag">Gemini AI API</span>
                                 </div>
                             </div>
                         </motion.div>
 
                         {/* Small Project Card 2 */}
                         <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
+                            whileHover={{ y: -2 }}
+                            className="surface-card project-card"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
+
+                            <div className="surface-content p-4 h-full">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <h1 className="text-lg font-semibold mb-2 text-white">Movie-Finder</h1>
@@ -544,20 +540,20 @@ const Projects = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">JavaScript</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">HTML/CSS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">Movie Database API</span>
+                                    <span className="project-tag">JavaScript</span>
+                                    <span className="project-tag">HTML/CSS</span>
+                                    <span className="project-tag">Movie Database API</span>
                                 </div>
                             </div>
                         </motion.div>
 
                         {/* Small Project Card 3 */}
                         <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
+                            whileHover={{ y: -2 }}
+                            className="surface-card project-card"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
+
+                            <div className="surface-content p-4 h-full">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <h1 className="text-lg font-semibold mb-2 text-white">Stone-Paper-Scissor-Game</h1>
@@ -570,19 +566,19 @@ const Projects = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">HTML/CSS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">JavaScript</span>
+                                    <span className="project-tag">HTML/CSS</span>
+                                    <span className="project-tag">JavaScript</span>
                                 </div>
                             </div>
                         </motion.div>
 
                         {/* Small Project Card 4 */}
                         <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
+                            whileHover={{ y: -2 }}
+                            className="surface-card project-card"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
+
+                            <div className="surface-content p-4 h-full">
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <h1 className="text-lg font-semibold mb-2 text-white">Quote-Generator</h1>
@@ -595,9 +591,9 @@ const Projects = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">React</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">NodeJS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">Axios</span>
+                                    <span className="project-tag">React</span>
+                                    <span className="project-tag">NodeJS</span>
+                                    <span className="project-tag">Axios</span>
                                 </div>
                             </div>
                         </motion.div>
