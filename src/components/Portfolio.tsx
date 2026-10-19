@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { CanvasRevealEffect } from "@/components/ui/sign-in-flow-1";
+import { motion, useScroll, useTransform } from "framer-motion";
+import GradientASCII from "@/components/GradientASCII";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import Projects from "@/components/Projects";
@@ -489,26 +489,41 @@ function TechStackSection() {
 
 // ============ Main Portfolio Component ============
 export function Portfolio() {
-    const [initialCanvasVisible] = useState(true);
+    // Dim the ASCII background as the visitor scrolls past the hero so section content stays readable
+    const { scrollY } = useScroll();
+    const dimOpacity = useTransform(scrollY, [0, 700], [0, 0.6]);
 
     return (
         <div className="flex w-full flex-col min-h-screen bg-black relative">
-            {/* Shader Background */}
-            <div className="fixed inset-0 z-0">
-                {initialCanvasVisible && (
-                    <div className="absolute inset-0">
-                        <CanvasRevealEffect
-                            animationSpeed={3}
-                            containerClassName="bg-black"
-                            colors={[[255, 255, 255], [255, 255, 255]]}
-                            dotSize={6}
-                            opacities={[0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1]}
-                            reverse={false}
-                        />
-                    </div>
-                )}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,1)_0%,_transparent_100%)]" />
-                <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black to-transparent" />
+            {/* ASCII Gradient Background */}
+            <div className="fixed inset-0 z-0" aria-hidden="true">
+                <GradientASCII
+                    colors={["#1e3fd8", "#f6f8ff", "#a5d8ff", "#38bdf8"]}
+                    shape="horizon"
+                    characters=" =+xX0S8#@"
+                    cellSize={18}
+                    density={0.8}
+                    glyphOpacity={0.85}
+                    glow={0.2}
+                    depthOfField={0}
+                    flicker={0.2}
+                    softness={0.5}
+                    scale={1}
+                    flow={0.5}
+                    speed={1}
+                    gradientOpacity={0.9}
+                    grain={0.08}
+                    variation={0}
+                    mouseInteraction
+                    scrambleRadius={0.1}
+                    clickEffect="wave"
+                    intro
+                    lightMode={false}
+                />
+                {/* Readability overlays */}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.55)_0%,_rgba(0,0,0,0.15)_55%,_transparent_100%)]" />
+                <div className="pointer-events-none absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/80 to-transparent" />
+                <motion.div className="pointer-events-none absolute inset-0 bg-black" style={{ opacity: dimOpacity }} />
             </div>
 
             {/* Content */}
