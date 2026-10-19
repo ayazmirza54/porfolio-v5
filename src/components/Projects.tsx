@@ -1,608 +1,192 @@
-import { Github, ArrowUpRight } from "lucide-react";
-import { FaServer } from "react-icons/fa";
+import { ArrowUpRight, ExternalLink, Github, Terminal } from "lucide-react";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { WEBDEV_AI_PROJECTS, DEVOPS_PROJECTS, OTHER_PROJECTS } from "@/constants";
+import p1 from "@/assets/projects/p1.webp";
+import p2 from "@/assets/projects/p2.webp";
+import p3 from "@/assets/projects/p3.webp";
+import p4 from "@/assets/projects/p4.webp";
+import p5 from "@/assets/projects/p5.webp";
+import p6 from "@/assets/projects/p6.webp";
+import p7Poster from "@/assets/projects/p7-poster.webp";
+import p7Video from "@/assets/projects/p7.mp4";
+import p8 from "@/assets/projects/p8.webp";
+import p9 from "@/assets/projects/p9.webp";
 
-// Import project images
-import p1 from "@/assets/p1.png";
-import p2 from "@/assets/p2.png";
-import p3 from "@/assets/p3.png";
-import p4 from "@/assets/p4.png";
-import p5 from "@/assets/p5.png";
-import p6 from "@/assets/p6.png";
-import p7 from "@/assets/p7.gif";
-import p8 from "@/assets/p8.png";
-import p9 from "@/assets/p9.png";
+const IMAGES: Record<string, string> = { p1, p2, p3, p4, p5, p6, p8, p9 };
+const VIDEOS: Record<string, { src: string; poster: string }> = { p7: { src: p7Video, poster: p7Poster } };
+
+type Project = (typeof WEBDEV_AI_PROJECTS)[number] | (typeof DEVOPS_PROJECTS)[number];
+
+function ProjectMedia({ project }: { project: Project }) {
+    const video = project.image ? VIDEOS[project.image] : undefined;
+    const image = project.image ? IMAGES[project.image] : undefined;
+    const mediaClass = "h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]";
+
+    if (video) {
+        return (
+            <video
+                className={mediaClass}
+                src={video.src}
+                poster={video.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                aria-label={`${project.title} demo`}
+            />
+        );
+    }
+    if (image) {
+        return <img className={mediaClass} src={image} alt={`${project.title} screenshot`} loading="lazy" decoding="async" />;
+    }
+    return (
+        <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgb(56_189_248/0.18),transparent_60%)]">
+            <Terminal size={40} className="text-accent/70" />
+        </div>
+    );
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+    const technologies = "technologies" in project ? project.technologies : undefined;
+
+    return (
+        <motion.article
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: (index % 2) * 0.1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            className="group glass-card flex flex-col overflow-hidden hover:border-accent/40 hover:-translate-y-1 transition-[transform,border-color] duration-300"
+        >
+            <div className="relative aspect-video overflow-hidden border-b border-white/10 bg-black">
+                <ProjectMedia project={project} />
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                <p className="mt-2 flex-1 text-[15px] leading-relaxed text-white/65">{project.description}</p>
+                {technologies && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {technologies.map((tech) => (
+                            <span key={tech} className="font-mono text-[11px] px-2 py-1 rounded-md border border-accent/20 bg-accent/5 text-accent-soft/80">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                )}
+                <div className="mt-5 flex gap-3">
+                    {project.liveLink && (
+                        <a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 font-mono text-xs text-white hover:border-accent/60 hover:bg-accent/10 transition-colors"
+                        >
+                            <ExternalLink size={13} /> Live
+                        </a>
+                    )}
+                    {project.githubLink && (
+                        <a
+                            href={project.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 font-mono text-xs text-white hover:border-accent/60 hover:bg-accent/10 transition-colors"
+                        >
+                            <Github size={13} /> Code
+                        </a>
+                    )}
+                </div>
+            </div>
+        </motion.article>
+    );
+}
+
+function GroupLabel({ children }: { children: string }) {
+    return (
+        <div className="flex items-center gap-3 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">{children}</h3>
+            <div className="h-px flex-1 bg-white/[0.06]" />
+        </div>
+    );
+}
+
 const Projects = () => {
     return (
-        <section id="projects" className="min-h-screen px-4 py-20">
+        <section id="projects" className="px-4 py-24 md:py-32">
             <div className="max-w-6xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
-                        🕸️Webdev 🫱🏽‍🫲🏾 AI🤖 Projects
-                    </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-pink-500 mx-auto rounded-full" />
-                </motion.div>
+                <SectionHeading
+                    index="04"
+                    label="Work"
+                    title="Projects"
+                    description="AI-powered web apps, plus the cloud and DevOps tooling I build to automate my day job."
+                />
 
-                {/* Main Projects */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    {/* Card 1 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img
-                                    className="rounded-t-lg w-full"
-                                    src={p9}
-                                    alt=""
-                                />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        Draftbuddy
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    Draftbuddy — Your buddy for better drafts and send them over a teams message,a slack ping, an email or a linkedin post
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://draftbuddyy.vercel.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/draftbuddy/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img
-                                    className="rounded-t-lg w-full"
-                                    src={p1}
-                                    alt=""
-                                />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        Text to Content AI
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    Text to Content AI is an AI-powered tool that converts text into content. It uses the Gemini API to generate content based on the text input.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://texttocontent.vercel.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/text-to-content-ai/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 2 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p2} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        Intellisketch : AI powered drawing tool 🖌️
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    IntelliSketch is an AI-powered drawing app that uses Google Gemini API to interpret and solve mathematical sketches and graphical problems in real-time.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://intellisketch.vercel.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/intellisketch/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 3 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p3} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        Text/Code Utils.AI
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    Text and Code Utilities: AI-enhanced tool by Google Gemini, offering streamlined text analysis and code generation.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://text-code-util-aiprod.vercel.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/text-code-util.aiprod/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 4 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p4} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        Chat2pdf using gemini
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    AI-powered app for conversational PDF interaction using Gemini and LangChain.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://chat2pdf-using-gemini.streamlit.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/chat2pdf-using-gemini"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
+                <GroupLabel>Web & AI</GroupLabel>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                    {WEBDEV_AI_PROJECTS.map((project, i) => (
+                        <ProjectCard key={project.id} project={project} index={i} />
+                    ))}
                 </div>
 
-                {/* DevOps Projects Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12 mt-16"
-                >
-                    <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
-                        Devops Projects
-                    </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full" />
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    {/* Card 5 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p5} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-2xl font-bold tracking-tight text-white">
-                                        📜 UnixBot
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    UnixBot is a chatbot that can be used to chat about unix commands. It uses the Gemini API to generate responses.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://unix-bot.streamlit.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/unixbot"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 6 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p6} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        ⚒️ QuerySmith
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    QuerySmith is a chatbot that can be used to generate SQL queries. It uses the Gemini API to generate responses.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://query-smith.streamlit.app/"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            🔗 Live Link
-                                        </span>
-                                    </a>
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/chat-with-db"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 7 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p7} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight flex justify-center items-center gap-4 text-white">
-                                        <FaServer size={30} /> EC2 Manager TUI
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    A CLI tool to manage EC2 instances. It uses the AWS SDK for Python to interact with the AWS API.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/ec2-manager-tui"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 8 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src={p8} alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        📌 Keep Alive EC2 Script
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    This script keeps an EC2 instance alive by pinging it every 10 minutes.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/pingservice"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Card 9 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -5 }}
-                        className="relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-5 h-full">
-                            <a href="#">
-                                <img className="rounded-t-lg w-full" src="/system-metrics.png" alt="" />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h1 className="mb-2 text-xl md:text-xl font-bold tracking-tight text-white">
-                                        System Metrics Logging Script
-                                    </h1>
-                                </a>
-                                <p className="mb-3 font-normal text-white/80">
-                                    This script logs system metrics (CPU usage and memory usage) to a PostgreSQL database.
-                                </p>
-                                <div className="flex flex-row justify-center text-center gap-4">
-                                    <a
-                                        className="text-[10px] h-10 group relative w-fit overflow-hidden rounded-xl border border-gray-700 bg-black font-bold transition-all duration-300 hover:border-gray-500"
-                                        href="https://github.com/ayazmirza54/system-metrics-monitoring-script"
-                                    >
-                                        <span className="inline-flex h-full w-fit items-center gap-1 rounded-[10px] bg-black/80 px-2 py-2 text-white transition-all duration-300 group-hover:rounded-2xl group-hover:bg-black/0">
-                                            <Github size={12} /> Github Link
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
+                <GroupLabel>DevOps & Cloud</GroupLabel>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                    {DEVOPS_PROJECTS.map((project, i) => (
+                        <ProjectCard key={project.id} project={project} index={i} />
+                    ))}
                 </div>
 
-                {/* Other Noteworthy Projects */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="mt-16"
-                >
-                    <h2 className="text-2xl md:text-4xl font-bold mb-6 text-white">Other Noteworthy Projects</h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 rounded-full mb-8" />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {/* Small Project Card 1 */}
+                <GroupLabel>Other Noteworthy Projects</GroupLabel>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {OTHER_PROJECTS.map((project, i) => (
                         <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
+                            key={project.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: (i % 2) * 0.1 }}
+                            viewport={{ once: true }}
+                            className="group glass-card p-5 hover:border-accent/40"
                         >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h1 className="text-lg font-semibold mb-2 text-white">Studysensie</h1>
-                                        <p className="text-sm text-white/70 mb-4">Quiz Generator using Gemini AI API</p>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <a href="https://github.com/ayazmirza54/studysensei/" className="text-white/70 hover:text-white transition-colors">
-                                            <Github size={20} />
-                                        </a>
-                                        <a href="https://studysensei.vercel.app/" className="text-white/70 hover:text-white transition-colors">
-                                            <ArrowUpRight size={20} />
-                                        </a>
-                                    </div>
+                            <div className="flex items-start justify-between gap-4">
+                                <div>
+                                    <h4 className="font-semibold text-white">{project.title}</h4>
+                                    <p className="mt-1 text-sm text-white/60">{project.description}</p>
                                 </div>
-                                <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">React</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">TailwindCSS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">Gemini AI API</span>
+                                <div className="flex flex-shrink-0 gap-1">
+                                    {project.githubLink && (
+                                        <a
+                                            href={project.githubLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${project.title} source code`}
+                                            className="p-1.5 rounded-md text-white/45 hover:text-accent hover:bg-white/5 transition-colors"
+                                        >
+                                            <Github size={16} />
+                                        </a>
+                                    )}
+                                    {project.liveLink && (
+                                        <a
+                                            href={project.liveLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${project.title} live demo`}
+                                            className="p-1.5 rounded-md text-white/45 hover:text-accent hover:bg-white/5 transition-colors"
+                                        >
+                                            <ArrowUpRight size={16} />
+                                        </a>
+                                    )}
                                 </div>
                             </div>
-                        </motion.div>
-
-                        {/* Small Project Card 2 */}
-                        <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
-                        >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h1 className="text-lg font-semibold mb-2 text-white">Movie-Finder</h1>
-                                        <p className="text-sm text-white/70 mb-4">Movie Finder app using the Movie Database API</p>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <a href="https://github.com/ayazmirza54/movie-finder" className="text-white/70 hover:text-white transition-colors">
-                                            <Github size={20} />
-                                        </a>
-                                        <a href="https://movie-finder-lake-six.vercel.app/" className="text-white/70 hover:text-white transition-colors">
-                                            <ArrowUpRight size={20} />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">JavaScript</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">HTML/CSS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">Movie Database API</span>
-                                </div>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                {project.technologies.map((tech) => (
+                                    <span key={tech} className="font-mono text-[11px] px-2 py-1 rounded-md border border-white/10 text-white/55">
+                                        {tech}
+                                    </span>
+                                ))}
                             </div>
                         </motion.div>
-
-                        {/* Small Project Card 3 */}
-                        <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
-                        >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h1 className="text-lg font-semibold mb-2 text-white">Stone-Paper-Scissor-Game</h1>
-                                        <p className="text-sm text-white/70 mb-4">Stone Paper Scissor Game using React and TailwindCSS</p>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <a href="https://rock-paper-scrissors.netlify.app/" className="text-white/70 hover:text-white transition-colors">
-                                            <ArrowUpRight size={20} />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">HTML/CSS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">JavaScript</span>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Small Project Card 4 */}
-                        <motion.div
-                            whileHover={{ y: -3 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
-                        >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-4 h-full">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h1 className="text-lg font-semibold mb-2 text-white">Quote-Generator</h1>
-                                        <p className="text-sm text-white/70 mb-4">Quote Generator using an external API</p>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <a href="https://quote-generator-live.netlify.app" className="text-white/70 hover:text-white transition-colors">
-                                            <ArrowUpRight size={20} />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="flex gap-2 text-xs">
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">React</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">NodeJS</span>
-                                    <span className="px-2 py-1 bg-gray-800 rounded text-white/70">Axios</span>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );

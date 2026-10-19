@@ -1,118 +1,87 @@
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { FaLinkedin, FaGithub, FaTwitter, FaDev } from "react-icons/fa";
-import { Mail, Phone } from "lucide-react";
+import { FaDev, FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "@/constants";
 
-const SocialLinks = () => {
-    const socialLinks = [
-        { platform: "LinkedIn", link: "https://www.linkedin.com/in/ayazmirza54", icon: <FaLinkedin size={20} />, username: "ayazmirza54" },
-        { platform: "Github", link: "https://github.com/ayazmirza54", icon: <FaGithub size={20} />, username: "ayazmirza54" },
-        { platform: "Twitter", link: "https://twitter.com/ayazmirza54", icon: <FaTwitter size={20} />, username: "ayazmirza54" },
-        { platform: "Dev.to", link: "https://dev.to/ayazmirza54", icon: <FaDev size={20} />, username: "ayazmirza54" },
-    ];
+const SOCIAL_ICONS: Record<string, ReactNode> = {
+    LinkedIn: <FaLinkedinIn size={18} />,
+    Github: <FaGithub size={18} />,
+    Twitter: <FaXTwitter size={18} />,
+    "Dev.to": <FaDev size={18} />,
+};
 
+const Contact = () => {
     return (
-        <section id="contact" className="min-h-screen px-4 py-20">
+        <section id="contact" className="px-4 py-24 md:py-32">
             <div className="max-w-6xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
-                        📬 Get In Touch
-                    </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full" />
-                </motion.div>
+                <SectionHeading index="06" label="Contact" title="Get In Touch" />
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    {/* Header Info Card */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
+                        transition={{ duration: 0.6 }}
                         viewport={{ once: true }}
-                        className="md:col-span-8 relative rounded-2xl border-2 border-gray-600 p-2"
+                        className="glass-card relative overflow-hidden p-8 md:p-12"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-6 h-full flex flex-col md:flex-row justify-center items-center gap-4">
-                            <h3 className="text-4xl md:text-6xl font-jersey text-white uppercase">
-                                AM
-                            </h3>
-                            <p className="text-lg md:text-xl text-white/70">
-                                Software Engineer from Lucknow, India
-                            </p>
+                        <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+                        <p className="font-mono text-sm text-accent-soft/80">Have a pipeline, project or role in mind?</p>
+                        <h3 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight text-white">
+                            Let's build something <span className="text-accent">reliable</span>.
+                        </h3>
+                        <p className="mt-4 flex items-center gap-2 text-white/55">
+                            <MapPin size={16} /> {PERSONAL_INFO.locationFull}
+                        </p>
+                        <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                            <Button asChild size="lg">
+                                <a href={`mailto:${PERSONAL_INFO.email}?subject=Hello%20Ayaz!`}>
+                                    <Mail size={16} /> {PERSONAL_INFO.email}
+                                </a>
+                            </Button>
+                            <Button asChild variant="outline" size="lg">
+                                <a href={`tel:${PERSONAL_INFO.phone.replace(/\s/g, "")}`}>
+                                    <Phone size={16} /> {PERSONAL_INFO.phone}
+                                </a>
+                            </Button>
                         </div>
                     </motion.div>
 
-                    {/* Social Links Card */}
-                    <motion.div
+                    <motion.ul
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
                         viewport={{ once: true }}
-                        className="md:col-span-4 md:row-span-2 relative rounded-2xl border-2 border-gray-600 p-2"
+                        className="glass-card p-3 flex flex-col"
                     >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-4 h-full flex flex-col gap-3">
-                            {socialLinks.map((social, index) => (
-                                <motion.a
-                                    key={social.platform}
+                        {SOCIAL_LINKS.map((social) => (
+                            <li key={social.platform} className="flex-1">
+                                <a
                                     href={social.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    initial={{ opacity: 0, x: 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.3 + index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ scale: 1.02 }}
-                                    className="relative rounded-xl border border-gray-700 p-3 bg-black hover:bg-white/10 transition-all"
+                                    className="group flex h-full items-center justify-between gap-4 rounded-xl px-4 py-4 hover:bg-white/5 transition-colors"
                                 >
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-3 text-white">
-                                            {social.icon}
-                                            <span className="font-bold">{social.platform}</span>
-                                        </div>
-                                        <span className="text-white/60 text-sm">{social.username}</span>
-                                    </div>
-                                </motion.a>
-                            ))}
-                        </div>
-                    </motion.div>
-
-                    {/* Email/Phone Card */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        viewport={{ once: true }}
-                        className="md:col-span-8 relative rounded-2xl border-2 border-gray-600 p-2"
-                    >
-                        <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                        <div className="relative bg-black rounded-xl p-6 h-full">
-                            <div className="flex flex-col md:flex-row items-start justify-center  md:items-center gap-4">
-                                <div className="flex items-center gap-3">
-                                    <Mail className="text-white/70" size={20} />
-                                    <a href="mailto:ayazmirza54@gmail.com" className="text-white hover:text-white/80 transition-colors">
-                                        ayazmirza54@gmail.com
-                                    </a>
-                                </div>
-                                <span className="hidden md:block text-white/30">|</span>
-                                <div className="flex items-center gap-3">
-                                    <Phone className="text-white/70" size={20} />
-                                    <a href="tel:+919889017774" className="text-white hover:text-white/80 transition-colors">
-                                        +91 9889017774
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
+                                    <span className="flex items-center gap-3 text-white">
+                                        <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 group-hover:text-accent group-hover:border-accent/40 transition-colors">
+                                            {SOCIAL_ICONS[social.platform]}
+                                        </span>
+                                        <span>
+                                            <span className="block font-medium">{social.platform}</span>
+                                            <span className="block font-mono text-xs text-white/45">@{social.username}</span>
+                                        </span>
+                                    </span>
+                                    <ArrowUpRight size={18} className="text-white/30 transition-all group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                </a>
+                            </li>
+                        ))}
+                    </motion.ul>
                 </div>
             </div>
         </section>
     );
 };
 
-export default SocialLinks;
+export default Contact;
