@@ -522,6 +522,7 @@ export function Portfolio() {
                     clickEffect="wave"
                     intro
                     lightMode={false}
+                    fontFamily="'JetBrains Mono', ui-monospace, monospace"
                     dpr={1.5}
                 />
                 {/* Readability overlays */}
