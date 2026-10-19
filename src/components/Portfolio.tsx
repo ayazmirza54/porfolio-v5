@@ -153,7 +153,7 @@ function HeroSection() {
 
                 <h1 className="mt-8 flex flex-col items-center">
                     <span className="font-mono text-lg md:text-2xl text-accent-soft/80">Hi, I'm</span>
-                    <span className="hero-name font-jersey text-7xl sm:text-8xl md:text-9xl leading-[0.9]" data-text={PERSONAL_INFO.name}>
+                    <span className="font-jersey text-white text-7xl sm:text-8xl md:text-9xl leading-[0.9]">
                         {PERSONAL_INFO.name}
                     </span>
                 </h1>
