@@ -327,6 +327,3 @@ export const BLOGS = [
         platform: "Dev.to",
     },
 ];
-
-// ============ Gradient Colors ============
-export const GRADIENT_TEXT_COLORS = ["#a5d8ff", "#38bdf8", "#40ffaa", "#38bdf8", "#a5d8ff"];

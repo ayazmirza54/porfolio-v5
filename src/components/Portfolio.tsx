@@ -9,9 +9,8 @@ import Projects from "@/components/Projects";
 import WorkExp from "@/components/WorkExp";
 import Blogs from "@/components/Blogs";
 import Contact from "@/components/SocialLinks";
-import GradientText from "@/components/GradientText";
 import CertBadge3D from "@/components/CertBadge3D";
-import { NAV_LINKS, PERSONAL_INFO, SOCIAL_LINKS, STATS, GRADIENT_TEXT_COLORS } from "@/constants";
+import { NAV_LINKS, PERSONAL_INFO, SOCIAL_LINKS, STATS } from "@/constants";
 import awsIcon from "@/assets/aws.svg";
 import azureIcon from "@/assets/azure.svg";
 import gcpIcon from "@/assets/gcp.svg";
@@ -154,9 +153,9 @@ function HeroSection() {
 
                 <h1 className="mt-8 flex flex-col items-center">
                     <span className="font-mono text-lg md:text-2xl text-accent-soft/80">Hi, I'm</span>
-                    <GradientText colors={GRADIENT_TEXT_COLORS} animationSpeed={6} showBorder={false}>
-                        <span className="font-jersey text-7xl sm:text-8xl md:text-9xl leading-[0.9]">{PERSONAL_INFO.name}</span>
-                    </GradientText>
+                    <span className="hero-name font-jersey text-7xl sm:text-8xl md:text-9xl leading-[0.9]" data-text={PERSONAL_INFO.name}>
+                        {PERSONAL_INFO.name}
+                    </span>
                 </h1>
 
                 <p className="mt-6 text-base md:text-lg text-white/75 max-w-xl leading-relaxed [text-shadow:0_1px_12px_rgb(0_0_0/0.8)]">
