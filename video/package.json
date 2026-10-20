@@ -1,0 +1,25 @@
+{
+  "name": "ayaz-mirza-intro-film",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio": "node scripts/generate-audio.mjs",
+    "render:landscape": "remotion render src/index.ts AyazIntro-16x9 out/ayaz-mirza-intro-16x9.mp4",
+    "render:vertical": "remotion render src/index.ts AyazIntro-9x16 out/ayaz-mirza-intro-9x16.mp4",
+    "render": "npm run audio && npm run render:landscape && npm run render:vertical",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.537",
+    "@remotion/fonts": "^4.0.537",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "remotion": "^4.0.537"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.5",
+    "typescript": "^5.9.3"
+  }
+}
