@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, random, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, staticFile, useCurrentFrame } from "remotion";
 import { colors } from "../lib/theme";
 
 /** Base canvas: near-black field, faint dot grid, soft colour wash. */
@@ -29,27 +29,23 @@ export const Backdrop: React.FC<{ grid?: number; wash?: number }> = ({ grid = 1,
   );
 };
 
-/** Film grain + vignette, layered over everything. */
-export const FilmFinish: React.FC = () => {
-  const frame = useCurrentFrame();
-  const step = Math.floor(frame / 2);
-  const x = Math.floor(random(`gx${step}`) * 384);
-  const y = Math.floor(random(`gy${step}`) * 384);
-  return (
-    <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <AbsoluteFill
-        style={{
-          backgroundImage: `url(${staticFile("textures/grain.png")})`,
-          backgroundPosition: `${x}px ${y}px`,
-          opacity: 0.045,
-          mixBlendMode: "screen",
-        }}
-      />
-      <AbsoluteFill
-        style={{
-          background: "radial-gradient(ellipse 85% 75% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)",
-        }}
-      />
-    </AbsoluteFill>
-  );
-};
+/**
+ * Fine grain + vignette over everything. The grain is a static texture: it
+ * breaks up gradient banding without the bitrate cost of animated noise.
+ */
+export const FilmFinish: React.FC = () => (
+  <AbsoluteFill style={{ pointerEvents: "none" }}>
+    <AbsoluteFill
+      style={{
+        backgroundImage: `url(${staticFile("textures/grain.png")})`,
+        opacity: 0.035,
+        mixBlendMode: "screen",
+      }}
+    />
+    <AbsoluteFill
+      style={{
+        background: "radial-gradient(ellipse 85% 75% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)",
+      }}
+    />
+  </AbsoluteFill>
+);
