@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated launch videos (brag skill) and locally installed agent skills
+brag-output/
+brag-output-*/
+.agents/
+.claude/skills/
+skills-lock.json

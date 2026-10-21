@@ -1,71 +1,86 @@
-import { Calendar, MapPin } from "lucide-react";
+import { useState } from "react";
+import { Calendar, ChevronDown, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
-// @ts-ignore
+import { SectionHeading } from "@/components/ui/section-heading";
 import { WORK_EXPERIENCE } from "@/constants";
+
+const VISIBLE_BULLETS = 3;
+
+type Experience = (typeof WORK_EXPERIENCE)[number];
+
+function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
+    const [expanded, setExpanded] = useState(false);
+    const isCurrent = exp.status === "Current";
+    const bullets = expanded ? exp.responsibilities : exp.responsibilities.slice(0, VISIBLE_BULLETS);
+    const hiddenCount = exp.responsibilities.length - VISIBLE_BULLETS;
+
+    return (
+        <motion.li
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            className="relative pl-8 md:pl-12"
+        >
+            {/* Timeline node */}
+            <span
+                className={`absolute left-0 top-7 -translate-x-1/2 h-3.5 w-3.5 rounded-full border-2
+                            ${isCurrent ? "border-mint bg-mint/30 shadow-[0_0_12px_rgb(64_255_170/0.7)]" : "border-accent/70 bg-black"}`}
+            />
+
+            <article className="glass-card p-6 md:p-8 hover:border-accent/30">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                        <h3 className="text-xl md:text-2xl font-semibold text-white">{exp.title}</h3>
+                        <p className="mt-1 text-white/70">{exp.company}</p>
+                    </div>
+                    <span
+                        className={`font-mono text-[11px] uppercase tracking-wider px-2.5 py-1 rounded-full border
+                                    ${isCurrent ? "border-mint/40 text-mint bg-mint/10" : "border-white/10 text-white/50"}`}
+                    >
+                        {exp.status}
+                    </span>
+                </div>
+
+                <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-xs text-white/45">
+                    <span className="flex items-center gap-1.5"><Calendar size={13} />{exp.duration}</span>
+                    <span className="flex items-center gap-1.5"><MapPin size={13} />{exp.location}</span>
+                </div>
+
+                <ul className="mt-5 space-y-2.5 text-[15px] leading-relaxed text-white/75">
+                    {bullets.map((resp) => (
+                        <li key={resp} className="flex gap-3">
+                            <span className="mt-2.5 h-1 w-1 flex-shrink-0 rounded-full bg-accent" />
+                            <span>{resp}</span>
+                        </li>
+                    ))}
+                </ul>
+
+                {hiddenCount > 0 && (
+                    <button
+                        onClick={() => setExpanded(!expanded)}
+                        aria-expanded={expanded}
+                        className="mt-4 inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-white transition-colors"
+                    >
+                        {expanded ? "Show less" : `Show ${hiddenCount} more`}
+                        <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+                    </button>
+                )}
+            </article>
+        </motion.li>
+    );
+}
+
 const WorkExp = () => {
     return (
-        <section id="work-experience" className="min-h-screen px-4 py-20">
+        <section id="work-experience" className="px-4 py-24 md:py-32">
             <div className="max-w-6xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-2xl md:text-4xl font-extrabold capitalize mb-4 text-white">
-                        Work Experience
-                    </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full" />
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {WORK_EXPERIENCE.map((exp: any, index: number) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 * (index + 1) }}
-                            viewport={{ once: true }}
-                            whileHover={{ y: -5 }}
-                            className="relative rounded-2xl border-2 border-gray-600 p-2"
-                        >
-                            <GlowingEffect spread={50} glow={true} disabled={false} proximity={80} inactiveZone={0.01} borderWidth={4} />
-                            <div className="relative bg-black rounded-xl p-6 h-full">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h1 className="text-xl md:text-2xl font-bold text-white">
-                                        {exp.title}
-                                    </h1>
-                                    <div className={`px-3 py-1 text-xs font-medium rounded-full ${exp.status === 'Current' ? 'bg-green-900 text-green-300' : 'bg-gray-700 text-gray-300'}`}>
-                                        {exp.status}
-                                    </div>
-                                </div>
-
-                                <h4 className="text-xl mb-2 text-white/80">
-                                    {exp.company}
-                                </h4>
-
-                                <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-white/70">
-                                    <div className="flex items-center gap-1">
-                                        <Calendar size={16} />
-                                        <span>{exp.duration}</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <MapPin size={16} />
-                                        <span>{exp.location}</span>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2 text-white/80 text-sm">
-                                    {exp.responsibilities.map((resp: string, i: number) => (
-                                        <p key={i}>• {resp}</p>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.div>
+                <SectionHeading index="02" label="Career" title="Work Experience" />
+                <ol className="relative max-w-4xl space-y-8 border-l border-white/10 ml-1.5">
+                    {WORK_EXPERIENCE.map((exp, index) => (
+                        <ExperienceCard key={exp.title} exp={exp} index={index} />
                     ))}
-                </div>
+                </ol>
             </div>
         </section>
     );

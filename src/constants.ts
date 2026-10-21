@@ -15,7 +15,7 @@ export const PERSONAL_INFO = {
     bio: "Senior Consultant at Wipro with 6+ years of experience in ETL development using Ab Initio ETL tool. Experienced in working with cloud providers like AWS, Azure and GCP.",
     aboutDescription: "Data Engineer with 6+ years of experience in designing, building, and optimizing high-volume ETL pipelines using Ab Initio and SQL. Skilled in automation with Shell scripting and Ansible, data visualization with Power BI, and leveraging Google Cloud Platform (GCP) & AWS for scalable cloud based solutions. Strong background in troubleshooting performance issues, ensuring data quality, and delivering efficient, reliable data workflows.",
     location: "Lucknow, India",
-    locationFull: "Software Engineer from Lucknow, India",
+    locationFull: "Data Engineer from Lucknow, India",
     email: "ayazmirza54@gmail.com",
     phone: "+91 9889017774",
     resumeUrl: "/AyazMirzaResume.pdf",
@@ -118,7 +118,7 @@ export const WORK_EXPERIENCE = [
         title: "Data Engineer (Platform Team)",
         company: "Wipro Limited — Aldermore Bank",
         status: "Current",
-        duration: "Nov2025 - Present",
+        duration: "Nov 2025 - Present",
         location: "Greater Noida, India",
         responsibilities: [
             "Transitioned into a UK-based financial services client (Aldermore Bank) as a Data Engineer on the Ab Initio Platform team, managing the group data platform end-to-end",
@@ -177,14 +177,16 @@ export const WEBDEV_AI_PROJECTS = [
         image: "p1",
         liveLink: "https://texttocontent.vercel.app/",
         githubLink: "https://github.com/ayazmirza54/text-to-content-ai/",
+        technologies: ["Gemini API"],
     },
     {
         id: 3,
-        title: "Intellisketch : AI powered drawing tool 🖌️",
+        title: "IntelliSketch",
         description: "IntelliSketch is an AI-powered drawing app that uses Google Gemini API to interpret and solve mathematical sketches and graphical problems in real-time.",
         image: "p2",
         liveLink: "https://intellisketch.vercel.app/",
         githubLink: "https://github.com/ayazmirza54/intellisketch/",
+        technologies: ["Gemini API"],
     },
     {
         id: 4,
@@ -196,11 +198,12 @@ export const WEBDEV_AI_PROJECTS = [
     },
     {
         id: 5,
-        title: "Chat2pdf using gemini",
+        title: "Chat2PDF",
         description: "AI-powered app for conversational PDF interaction using Gemini and LangChain.",
         image: "p4",
         liveLink: "https://chat2pdf-using-gemini.streamlit.app/",
         githubLink: "https://github.com/ayazmirza54/chat2pdf-using-gemini",
+        technologies: ["Gemini API", "LangChain", "Streamlit"],
     },
 ];
 
@@ -208,19 +211,21 @@ export const WEBDEV_AI_PROJECTS = [
 export const DEVOPS_PROJECTS = [
     {
         id: 6,
-        title: "📜 UnixBot",
+        title: "UnixBot",
         description: "UnixBot is a chatbot that can be used to chat about unix commands. It uses the Gemini API to generate responses.",
         image: "p5",
         liveLink: "https://unix-bot.streamlit.app/",
         githubLink: "https://github.com/ayazmirza54/unixbot",
+        technologies: ["Gemini API", "Streamlit"],
     },
     {
         id: 7,
-        title: "⚒️ QuerySmith",
+        title: "QuerySmith",
         description: "QuerySmith is a chatbot that can be used to generate SQL queries. It uses the Gemini API to generate responses.",
         image: "p6",
         liveLink: "https://query-smith.streamlit.app/",
         githubLink: "https://github.com/ayazmirza54/chat-with-db",
+        technologies: ["Gemini API", "SQL", "Streamlit"],
     },
     {
         id: 8,
@@ -229,22 +234,25 @@ export const DEVOPS_PROJECTS = [
         image: "p7",
         liveLink: null,
         githubLink: "https://github.com/ayazmirza54/ec2-manager-tui",
+        technologies: ["Python", "AWS SDK", "EC2"],
     },
     {
         id: 9,
-        title: "📌 Keep Alive EC2 Script",
+        title: "Keep Alive EC2 Script",
         description: "This script keeps an EC2 instance alive by pinging it every 10 minutes.",
         image: "p8",
         liveLink: null,
         githubLink: "https://github.com/ayazmirza54/pingservice",
+        technologies: ["AWS EC2"],
     },
     {
         id: 10,
         title: "System Metrics Logging Script",
         description: "This script logs system metrics (CPU usage and memory usage) to a PostgreSQL database.",
-        image: "/system-metrics.png",
+        image: null,
         liveLink: null,
         githubLink: "https://github.com/ayazmirza54/system-metrics-monitoring-script",
+        technologies: ["PostgreSQL"],
     },
 ];
 
@@ -252,7 +260,7 @@ export const DEVOPS_PROJECTS = [
 export const OTHER_PROJECTS = [
     {
         id: 11,
-        title: "Studysensie",
+        title: "StudySensei",
         description: "Quiz Generator using Gemini AI API",
         githubLink: "https://github.com/ayazmirza54/studysensei/",
         liveLink: "https://studysensei.vercel.app/",
@@ -260,7 +268,7 @@ export const OTHER_PROJECTS = [
     },
     {
         id: 12,
-        title: "Movie-Finder",
+        title: "Movie Finder",
         description: "Movie Finder app using the Movie Database API",
         githubLink: "https://github.com/ayazmirza54/movie-finder",
         liveLink: "https://movie-finder-lake-six.vercel.app/",
@@ -268,7 +276,7 @@ export const OTHER_PROJECTS = [
     },
     {
         id: 13,
-        title: "Stone-Paper-Scissor-Game",
+        title: "Stone Paper Scissors",
         description: "Stone Paper Scissor Game using React and TailwindCSS",
         githubLink: null,
         liveLink: "https://rock-paper-scrissors.netlify.app/",
@@ -276,7 +284,7 @@ export const OTHER_PROJECTS = [
     },
     {
         id: 14,
-        title: "Quote-Generator",
+        title: "Quote Generator",
         description: "Quote Generator using an external API",
         githubLink: null,
         liveLink: "https://quote-generator-live.netlify.app",
@@ -319,26 +327,3 @@ export const BLOGS = [
         platform: "Dev.to",
     },
 ];
-
-// ============ Gradient Colors ============
-export const GRADIENT_TEXT_COLORS = ["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"];
-
-// ============ Canvas Effect Config ============
-export const CANVAS_EFFECT_CONFIG = {
-    animationSpeed: 3,
-    containerClassName: "bg-black",
-    colors: [[255, 255, 255], [255, 255, 255]],
-    dotSize: 6,
-    opacities: [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
-    reverse: false,
-};
-
-// ============ Glowing Effect Config ============
-export const GLOWING_EFFECT_CONFIG = {
-    spread: 50,
-    glow: true,
-    disabled: false,
-    proximity: 80,
-    inactiveZone: 0.01,
-    borderWidth: 4,
-};

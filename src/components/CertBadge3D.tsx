@@ -140,6 +140,8 @@ export default function CertBadge3D({ imageSrc, title, subtitle, link }: CertBad
                         src={imageSrc}
                         alt={title}
                         className="cert-badge-3d-image"
+                        loading="lazy"
+                        decoding="async"
                         draggable={false}
                     />
 
